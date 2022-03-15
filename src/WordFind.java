@@ -12,7 +12,7 @@ public class WordFind{
     }
 
     public void fillArray(String message){ //assume message has a length of 5
-        for(int i = 1; i < message.length(); i++){
+        for(int i = 1; i <= message.length(); i++){
             userWord[i-1] = message.substring(i-1, i);
         }
     }
@@ -21,12 +21,29 @@ public class WordFind{
         return userWord;
     }
 
-    public void fillGrid(int rowIndex){
+    public boolean fillGrid(int rowIndex){
+        String str = "";
         for(int i = 0; i < userWord.length; i++){
             if(target.indexOf(userWord[i]) != -1 && userWord[i].equals(target.substring(i,i+1))){
-                box[rowIndex][i] = (Color.GREEN + userWord[i]);
+                box[rowIndex][i] = (Function.BLUE + userWord[i] + Function.WHITE);;
+            }
+            else if(target.indexOf(userWord[i]) != -1 && !userWord[i].equals(target.substring(i,i+1))){
+                box[rowIndex][i] =(Function.YELLOW + userWord[i] + Function.WHITE);
+            }
+            else{
+                box[rowIndex][i] = userWord[i];
             }
         }
+        for(int i = rowIndex; i < rowIndex + 1; i++){
+            for(int j = 0; j < box[0].length; j++){
+                str += box[i][j];
+            }
+        }
+        System.out.println(str);
+        if(str.equals(target)){
+            return true;
+        }
+        return false;
     }
 
     public void printGrid(){
