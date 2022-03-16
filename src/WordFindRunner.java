@@ -32,6 +32,7 @@ public class WordFindRunner {
             index++;
             if(index == 6){
                 System.out.println("You lost the game!");
+                System.out.println("The correct word is " + test.getTarget());
             }
         }
     }

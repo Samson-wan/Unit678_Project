@@ -11,10 +11,29 @@ public class WordFind{
         box = grid.getGrid();
     }
 
+    public String getTarget(){
+        return target;
+    }
+
     public void fillArray(String message){ //assume message has a length of 5
         for(int i = 1; i <= message.length(); i++){
             userWord[i-1] = message.substring(i-1, i);
         }
+    }
+
+    public boolean correctPosition(String letter, int row){
+        int indexOfBox = -1;
+        int indexOfWord = -1;
+        if(row > 0){
+            for(int i = 0; i < userWord.length; i++){
+                if(box[row-1][i].equals(letter)){
+                    if(userWord[i].equals(letter)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public String[] getUserWord(){
@@ -28,7 +47,12 @@ public class WordFind{
                 box[rowIndex][i] = (Function.BLUE + userWord[i] + Function.WHITE);;
             }
             else if(target.indexOf(userWord[i]) != -1 && !userWord[i].equals(target.substring(i,i+1))){
-                box[rowIndex][i] =(Function.YELLOW + userWord[i] + Function.WHITE);
+                if(correctPosition(userWord[i], rowIndex)){
+                    box[rowIndex][i] = userWord[i];
+                }
+                else{
+                    box[rowIndex][i] =(Function.YELLOW + userWord[i] + Function.WHITE);
+                }
             }
             else{
                 box[rowIndex][i] = userWord[i];
