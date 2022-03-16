@@ -5,7 +5,7 @@ public class WordFind{
 
     public WordFind(){
         Word word = new Word();
-        LetterGrid grid = new LetterGrid(5, 6);
+        LetterGrid grid = new LetterGrid(6, 5);
         userWord = new String[5];
         target = word.getRandomWord();
         box = grid.getGrid();
@@ -39,20 +39,28 @@ public class WordFind{
                 str += box[i][j];
             }
         }
-        System.out.println(str);
-        if(str.equals(target)){
+        String colorTarget = "";
+        for(int i = 0; i < target.length(); i++){
+            colorTarget += Function.BLUE + target.substring(i, i + 1) + Function.WHITE;
+        }
+        if(str.equals(colorTarget)){
             return true;
         }
         return false;
     }
 
-    public void printGrid(){
-        for(String[] row : box){
-            for(String letter : row){
-                System.out.print(letter);
-            }
-            System.out.println();
-        }
-
+    public void printGrid(int index){
+       for(int i = 0; i <= index; i++){
+           for(int j = 0; j < 5; j++){
+               System.out.print(box[i][j] + "   ");
+           }
+           System.out.println();
+       }
+       for(int i = index + 1; i < 6; i++){
+           for(int j = 0; j < 5; j++){
+               System.out.print(box[i][j] + "   ");
+           }
+           System.out.println();
+       }
     }
 }

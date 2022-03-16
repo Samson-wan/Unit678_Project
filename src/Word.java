@@ -14,7 +14,7 @@ public class Word {
         dictionary = new ArrayList<>();
         importDictionary();
         int index = (int)(Math.random() * dictionary.size());
-        randomWord = "hello"; //dictionary.get(index);
+        randomWord = dictionary.get(index);
     }
 
     public ArrayList<String> getDictionary(){

@@ -1,6 +1,6 @@
 import jdk.swing.interop.DropTargetContextWrapper;
 
-public class LetterGrid {
+public class LetterGrid{
     private int rows;
     private int cols;
     private String[][] grid;
@@ -9,6 +9,11 @@ public class LetterGrid {
         this.rows = rows;
         this.cols = cols;
         grid = new String[rows][cols];
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                grid[i][j] = "-";
+            }
+        }
     }
 
     public String[][] getGrid(){
