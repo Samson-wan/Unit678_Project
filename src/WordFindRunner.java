@@ -18,6 +18,10 @@ public class WordFindRunner {
         while(index < 6){
             System.out.print("Input your " + (index + 1) + " guess: ");
             String answer = scan.nextLine();
+            while(!test.checkLegit(answer)) {
+                System.out.print("Word not found, input again: ");
+                answer = scan.nextLine();
+            }
             test.fillArray(answer);
             if(test.fillGrid(index)){
                 test.printGrid(index);

@@ -2,13 +2,23 @@ public class WordFind{
     private String[] userWord;
     private String target;
     private  String[][] box;
+    private Word word;
 
     public WordFind(){
-        Word word = new Word();
+        word = new Word();
         LetterGrid grid = new LetterGrid(6, 5);
         userWord = new String[5];
         target = word.getRandomWord();
         box = grid.getGrid();
+    }
+
+    public boolean checkLegit(String msg){
+        for(int i = 0; i < word.getDictionary().size(); i++){
+            if(msg.equals(word.getDictionary().get(i))){
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getTarget(){
