@@ -3,7 +3,7 @@ import jdk.swing.interop.DropTargetContextWrapper;
 public class LetterGrid{
     private int rows;
     private int cols;
-    private String[][] grid;
+    private final String[][] grid;
 
     public LetterGrid(int rows, int cols){
         this.rows = rows;

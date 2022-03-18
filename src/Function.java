@@ -8,7 +8,7 @@ public class Function {
         try{
             Thread.sleep(ms);
         }
-        catch(InterruptedException e)
+        catch(InterruptedException ignored)
         {
 
         }

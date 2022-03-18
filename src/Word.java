@@ -8,13 +8,13 @@ import java.util.Scanner;
 
 public class Word {
     private ArrayList<String> dictionary;
-    private String randomWord;
+    private final String randomWord;
 
     public Word(){
         dictionary = new ArrayList<>();
         importDictionary();
         int index = (int)(Math.random() * dictionary.size());
-        randomWord = dictionary.get(index);
+        randomWord = "casus"; //dictionary.get(index);
     }
 
     public ArrayList<String> getDictionary(){
