@@ -33,9 +33,9 @@ public class WordFind{
 
     public boolean correctPosition(String letter, int row){
         if(row > 0){
-            for(int i = 0; i < userWord.length; i++){
+            for(int i = 0; i < target.length(); i++){
                 if(box[row-1][i].equals(Function.BLUE + letter)){
-                    if(userWord[i].equals(letter)){
+                    if(target.substring(i, i + 1).equals(letter)){
                         return true;
                     }
                 }
