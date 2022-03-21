@@ -5,6 +5,8 @@ public class WordFindRunner {
         Scanner scan = new Scanner(System.in);
         int index = 0;
         WordFind test = new WordFind();
+        AllGrid mega = new AllGrid();
+        String[][] box = new String[5][6];
         System.out.println("This is a wordle game.");
         Function.sleep(200);
         System.out.println("You have 6 chances to guess a 5-letter word.");
@@ -15,28 +17,53 @@ public class WordFindRunner {
         Function.sleep(200);
         System.out.println("White/Gray letter indicates the word does not contain the letter.");
         Function.sleep(200);
-        while(index < 6){
-            System.out.print("Input your " + (index + 1) + " guess: ");
-            String answer = scan.nextLine();
-            while(!test.checkLegit(answer)) {
-                System.out.print("Word not found, input again: ");
-                answer = scan.nextLine();
+        String answer = "null";
+        while(!answer.equals("e")){
+            System.out.println("(P)lay game");
+            System.out.println("(C)heck previous game board");
+            System.out.println("(E)nd game");
+            System.out.print("Input: ");
+            answer = scan.nextLine();
+            if(answer.toLowerCase().equals("p")){
+                while(index < 6){
+                    System.out.print("Input your " + (index + 1) + " guess: ");
+                    answer = scan.nextLine();
+                    while(!test.checkLegit(answer)) {
+                        System.out.print("Word not found, input again: ");
+                        answer = scan.nextLine();
+                    }
+                    test.fillArray(answer);
+                    if(test.fillGrid(index)){
+                        test.printGrid(index);
+                        System.out.println("You find the correct word in " + (index + 1) + " try!");
+                        System.out.println("Congratulations! You won the game!");
+                        break;
+                    }
+                    else{
+                        test.printGrid(index);
+                        System.out.println("The word is not correct. Keep Finding!");
+                    }
+                    index++;
+                    if(index == 6){
+                        System.out.println("You lost the game!");
+                        System.out.println("The correct word is " + test.getTarget());
+                    }
+                }
+                box = test.getBox();
+                mega.addBox(box);
             }
-            test.fillArray(answer);
-            if(test.fillGrid(index)){
-                test.printGrid(index);
-                System.out.println("You find the correct word in " + (index + 1) + " try!");
-                System.out.println("Congratulations! You won the game!");
-                break;
+            else if(answer.toLowerCase().equals("c")){
+                for(int i = 0; i < mega.gameGrids.size(); i++){
+                    System.out.println(mega.gameGrids.get(i).toString());
+                }
             }
+
+            else if(answer.toLowerCase().equals("e")){
+                System.out.println("Terminated.");
+            }
+
             else{
-                test.printGrid(index);
-                System.out.println("The word is not correct. Keep Finding!");
-            }
-            index++;
-            if(index == 6){
-                System.out.println("You lost the game!");
-                System.out.println("The correct word is " + test.getTarget());
+                System.out.println("Wrong input!");
             }
         }
     }

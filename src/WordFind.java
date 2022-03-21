@@ -95,4 +95,8 @@ public class WordFind{
            System.out.println();
        }
     }
+
+    public String[][] getBox(){
+        return box;
+    }
 }
