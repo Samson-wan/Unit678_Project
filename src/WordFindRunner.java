@@ -3,8 +3,6 @@ import java.util.Scanner;
 public class WordFindRunner {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
-        int index = 0;
-        WordFind test = new WordFind();
         AllGrid mega = new AllGrid();
         String[][] box = new String[5][6];
         System.out.println("This is a wordle game.");
@@ -25,6 +23,8 @@ public class WordFindRunner {
             System.out.print("Input: ");
             answer = scan.nextLine();
             if(answer.toLowerCase().equals("p")){
+                int index = 0;
+                WordFind test = new WordFind();
                 while(index < 6){
                     System.out.print("Input your " + (index + 1) + " guess: ");
                     answer = scan.nextLine();
@@ -53,9 +53,7 @@ public class WordFindRunner {
                 mega.addBox(box);
             }
             else if(answer.toLowerCase().equals("c")){
-                for(int i = 0; i < mega.gameGrids.size(); i++){
-                    System.out.println(mega.gameGrids.get(i).toString());
-                }
+                mega.print();
             }
 
             else if(answer.toLowerCase().equals("e")){
