@@ -31,17 +31,24 @@ public class WordFind{
         }
     }
 
-    public boolean correctPosition(String letter, int row){
-        if(row > 0){
-            for(int i = 0; i < target.length(); i++){
-                if(box[row-1][i].equals(Function.BLUE + letter)){
-                    if(target.substring(i, i + 1).equals(letter)){
-                        return true;
-                    }
+    public boolean checkDup(String letter){
+        int targetCount = 0;
+        int userCount = 0;
+        for(int i = 0; i < target.length(); i++){
+            if(target.substring(i,i+1).equals(letter)){
+                targetCount++;
+            }
+        }
+
+        for(int j = 0; j < userWord.length; j++){
+            if(userWord[j].equals(letter)){
+                userCount++;
+                if(userCount <= targetCount){
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
     public String[] getUserWord(){
@@ -55,15 +62,17 @@ public class WordFind{
                 box[rowIndex][i] = (Function.BLUE + userWord[i] + Function.WHITE);;
             }
             else if(target.indexOf(userWord[i]) != -1 && !userWord[i].equals(target.substring(i,i+1))){
-                if(!correctPosition(userWord[i], rowIndex)){
+                if(!checkDup(userWord[i])){
+                    System.out.println("if" + userWord[i]);
                     box[rowIndex][i] =(Function.YELLOW + userWord[i] + Function.WHITE);
                 }
                 else{
-                    box[rowIndex][i] = userWord[i];
+                    System.out.println("else" + userWord[i]);
+                    box[rowIndex][i] = Function.WHITE + userWord[i] + Function.WHITE;
                 }
             }
             else{
-                box[rowIndex][i] = userWord[i];
+                box[rowIndex][i] = Function.WHITE + userWord[i] + Function.WHITE;
             }
         }
         for(int i = rowIndex; i < rowIndex + 1; i++){
