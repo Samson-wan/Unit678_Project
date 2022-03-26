@@ -31,7 +31,7 @@ public class WordFind{
         }
     }
 
-    public boolean checkDup(String letter){
+    public boolean checkDup(String letter, int index){
         int targetCount = 0;
         int userCount = 0;
         for(int i = 0; i < target.length(); i++){
@@ -43,7 +43,7 @@ public class WordFind{
         for(int j = 0; j < userWord.length; j++){
             if(userWord[j].equals(letter)){
                 userCount++;
-                if(userCount <= targetCount){
+                if(userCount <= targetCount && j >= index){
                     return false;
                 }
             }
@@ -58,11 +58,11 @@ public class WordFind{
     public boolean fillGrid(int rowIndex){
         String str = "";
         for(int i = 0; i < userWord.length; i++){
-            if(target.indexOf(userWord[i]) != -1 && userWord[i].equals(target.substring(i,i+1))){
+            if(target.contains(userWord[i]) && userWord[i].equals(target.substring(i,i+1))){
                 box[rowIndex][i] = (Function.BLUE + userWord[i] + Function.WHITE);;
             }
-            else if(target.indexOf(userWord[i]) != -1 && !userWord[i].equals(target.substring(i,i+1))){
-                if(!checkDup(userWord[i])){
+            else if(target.contains(userWord[i]) && !userWord[i].equals(target.substring(i,i+1))){
+                if(!checkDup(userWord[i], i)){
                     System.out.println("if" + userWord[i]);
                     box[rowIndex][i] =(Function.YELLOW + userWord[i] + Function.WHITE);
                 }
